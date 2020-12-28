@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="Station Mode">
+
+        <EditTextPreference
+            android:dialogMessage="Set SSID for STA mode"
+            android:dialogTitle="SSID"
+            android:inputType="text"
+            android:key="sta_ssid"
+            android:title="SSID" />
+
+        <EditTextPreference
+            android:dialogMessage="Set password for STA mode"
+            android:dialogTitle="Password"
+            android:inputType="textPassword"
+            android:key="sta_wifi_password"
+            android:title="Password" />
+
+        <EditTextPreference
+            android:dialogMessage="Set port for STA mode"
+            android:dialogTitle="Port"
+            android:inputType="text"
+            android:key="sta_port"
+            android:title="Port" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Access Point Mode">
+
+        <EditTextPreference
+            android:dialogMessage="Set IP Address for AP mode"
+            android:dialogTitle="IP Address"
+            android:inputType="text"
+            android:key="ap_ip_address"
+            android:title="IP Address" />
+
+        <EditTextPreference
+            android:dialogMessage="Set SSID for AP mode"
+            android:dialogTitle="SSID"
+            android:inputType="text"
+            android:key="ap_ssid"
+            android:title="SSID" />
+
+        <EditTextPreference
+            android:dialogMessage="Set password for AP mode"
+            android:dialogTitle="Password"
+            android:inputType="textPassword"
+            android:key="ap_wifi_password"
+            android:title="Password" />
+
+        <EditTextPreference
+            android:dialogMessage="Set port for AP mode"
+            android:dialogTitle="Port"
+            android:inputType="text"
+            android:key="ap_port"
+            android:title="Port" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
