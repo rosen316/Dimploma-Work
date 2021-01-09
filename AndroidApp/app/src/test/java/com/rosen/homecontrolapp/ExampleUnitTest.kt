@@ -1,4 +1,4 @@
-package com.rosen.homecontrol
+package com.rosen.homecontrolapp
 
 import org.junit.Test
 

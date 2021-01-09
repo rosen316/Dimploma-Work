@@ -1,15 +1,14 @@
-package com.rosen.homecontrol.fragment;
+package com.rosen.homecontrolapp.fragment
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import androidx.preference.EditTextPreference;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
+import android.content.SharedPreferences
+import android.os.Bundle
+import androidx.preference.EditTextPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 
-import com.rosen.homecontrol.R;
-import com.rosen.homecontrol.constant.Constant;
-import com.rosen.homecontrol.model.Storage;
+import com.rosen.homecontrolapp.R
+import com.rosen.homecontrolapp.constant.Constant
+import com.rosen.homecontrolapp.model.Storage
 
 class ConfigurationFragment : PreferenceFragmentCompat(),
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -49,6 +48,7 @@ class ConfigurationFragment : PreferenceFragmentCompat(),
         }
 
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+
         }
 
  }

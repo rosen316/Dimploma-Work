@@ -1,6 +1,6 @@
-package com.rosen.homecontrol.constant
+package com.rosen.homecontrolapp.constant
 
-import com.rosen.homecontrol.model.Storage
+import com.rosen.homecontrolapp.model.Storage
 
 object Constant {
 

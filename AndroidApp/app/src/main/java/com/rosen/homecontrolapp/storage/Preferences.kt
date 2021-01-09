@@ -1,16 +1,16 @@
-package com.rosen.homecontrol.storage;
+package com.rosen.homecontrolapp.storage
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import com.rosen.homecontrol.constant.Constant
-import com.rosen.homecontrol.model.Storage
+import com.rosen.homecontrolapp.constant.Constant
+import com.rosen.homecontrolapp.model.Storage
 
 class Preferences(ctx: Context) {
 
     private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
 
-    private fun getSharedPreferencesValue(storage: Storage): String {
+    fun getSharedPreferencesValue(storage: Storage): String {
         val (key, default) = storage
         val value = preferences.getString(key, default)!!
         return if (value.isBlank()) default else value

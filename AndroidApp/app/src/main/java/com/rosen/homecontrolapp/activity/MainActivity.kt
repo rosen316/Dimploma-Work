@@ -1,20 +1,17 @@
-package com.rosen.homecontrol.activity
+package com.rosen.homecontrolapp.activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
-import androidx.preference.PreferenceManager
-import com.rosen.homecontrol.EspConnector
-import com.rosen.homecontrol.R
-import com.rosen.homecontrol.constant.Constant
-import com.rosen.homecontrol.storage.Preferences
+import com.rosen.homecontrolapp.EspConnector
+import com.rosen.homecontrolapp.R
+import com.rosen.homecontrolapp.storage.Preferences
 
+lateinit var espConnector: EspConnector
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,25 +20,24 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar((findViewById(R.id.toolbar_main)))
         val preferences = Preferences(this)
 
-        lateinit var espConnector: EspConnector
-        var btnON = findViewById(R.id.buttonOn) as Button
-        var btnOFF = findViewById(R.id.buttonOff) as Button
-        var btnAP = findViewById(R.id.buttonSwitchAp) as Button
-        var btnSTA = findViewById(R.id.buttonSwitchSta) as Button
+        var btnON = findViewById<Button>(R.id.buttonOn)
+        var btnOFF = findViewById<Button>(R.id.buttonOff)
+        var btnAP = findViewById<Button>(R.id.buttonSwitchAp)
+        var btnSTA = findViewById<Button>(R.id.buttonSwitchSta)
 
         espConnector = EspConnector(this@MainActivity)
 
-        btnON.setOnClickListener(){
+        btnON.setOnClickListener {
             Toast.makeText(this, "ON", Toast.LENGTH_LONG ).show()
             espConnector.sendLedRequest(state = "on")
         }
 
-        btnOFF.setOnClickListener(){
+        btnOFF.setOnClickListener {
             Toast.makeText(this, "OFF", Toast.LENGTH_SHORT ).show()
             espConnector.sendLedRequest(state = "off")
 
         }
-        btnAP.setOnClickListener(){
+        btnAP.setOnClickListener {
             Toast.makeText(this, "AP MODE", Toast.LENGTH_SHORT ).show()
             espConnector.sendSwitchRequest("ap")
             val url = "http://${preferences.getIpAddressAp()}"
@@ -50,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-        btnSTA.setOnClickListener(){
+        btnSTA.setOnClickListener {
             Toast.makeText(this, "STA MODE", Toast.LENGTH_SHORT ).show()
             espConnector.sendSwitchRequest("sta")
             val url = "http://${preferences.getIpAddressSta()}"
