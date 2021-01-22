@@ -1,7 +1,8 @@
-package com.rosen.homecontrolapp
+package com.rosen.homecontrolapp.service
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.rosen.homecontrolapp.storage.Preferences
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +25,7 @@ private interface EspApiService {
                    @Query("port_sta") portSta: String?): Call<Void>
 }
 
-class EspConnector(context: Context) {
+class EspConnector(val context: Context) {
 
     private val preferences = Preferences(context)
     private var service: EspApiService? = null

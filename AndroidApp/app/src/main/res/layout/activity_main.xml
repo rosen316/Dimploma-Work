@@ -1,58 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
-    android:background="@color/baby_blue"
-    android:orientation="vertical"
-
-    tools:context=".activity.MainActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main"
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/grey"
-        />
-
-    <Button
-        android:id="@+id/buttonOn"
-        android:layout_width="104dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="250sp"
-        android:backgroundTint="@color/lime"
-        android:text="ON"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-
-    <Button
-        android:id="@+id/buttonOff"
-        android:layout_width="104dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="50sp"
-        android:backgroundTint="@color/off_red"
-        android:text="OFF"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/buttonSwitchAp"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/grey"
-        android:text="AP"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
-    <Button
-        android:id="@+id/buttonSwitchSta"
+    <ListView
+        android:id="@+id/device_list"
         android:layout_width="wrap_content"
+        android:layout_height="607dp"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="232dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addDeviceButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/grey"
-        android:text="STA"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_add" />
+
+
 </LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:background="@color/baby_blue"
+    android:orientation="vertical"
+
+    tools:context=".activity.DeviceActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_device"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/grey" />
+
+    <TextView
+        android:id="@+id/RelayStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:text="@string/relay_status"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        tools:text="Relay Status" />
+
+    <TextView
+        android:id="@+id/statusVariable"
+        android:layout_width="183dp"
+        android:layout_height="36dp"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/ModeTextView"
+        android:layout_width="87dp"
+        android:layout_height="51dp"
+        android:text="@string/device_mode"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        tools:text="Mode" />
+
+    <TextView
+        android:id="@+id/modeVariable"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/buttonOn"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="100sp"
+        android:backgroundTint="@color/lime"
+        android:text="@string/on"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/buttonOff"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="50sp"
+        android:backgroundTint="@color/off_red"
+        android:text="@string/off"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonSwitchAp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/grey"
+        android:text="@string/ap"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonSwitchSta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/grey"
+        android:text="@string/sta"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+</LinearLayout>

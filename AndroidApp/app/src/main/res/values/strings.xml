@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Home Control App</string>
+    <string name= "relay_status">Relay Status</string>
+    <string name= "device_mode">Mode</string>
+    <string name="sta">STA</string>
+    <string name="ap">AP</string>
+    <string name="off">OFF</string>
+    <string name="on">ON</string>
+    <string name="add_device">Add Device</string>
+    <string name="device_name">Device Name</string>
+    <string name="ap_ssid">AP SSID</string>
+    <string name="ap_ip_address">AP IP Address</string>
+    <string name="sta_password">STA Password</string>
+    <string name="sta_ssid">STA SSID</string>
+    <string name="ap_password">AP Password</string>
+    <string name="sta_ip_address">STA IP Address</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>
