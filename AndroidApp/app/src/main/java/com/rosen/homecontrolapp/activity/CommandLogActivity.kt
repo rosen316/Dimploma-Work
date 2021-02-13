@@ -8,8 +8,11 @@ import android.widget.ListView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.rosen.homecontrolapp.R
+import com.rosen.homecontrolapp.constant.commandLogs
 import com.rosen.homecontrolapp.constant.devices
+import com.rosen.homecontrolapp.model.CommandLog
 import com.rosen.homecontrolapp.model.Device
+import com.rosen.homecontrolapp.storage.Preferences
 
 
 class CommandLogActivity : AppCompatActivity() {
@@ -19,17 +22,13 @@ class CommandLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_command_log)
 
-        val listView = findViewById<ListView>(R.id.device_list)
-        val arrayAdaper = ArrayAdapter<Device>(this, android.R.layout.simple_list_item_1, devices!!)
+        val prefs = Preferences(this)
 
+        commandLogs = prefs.getLogs()
+        val commandLogs_info = commandLogs.map { it.get_info() }.toMutableList()
+        val listView = findViewById<ListView>(R.id.LogListView)
+        val arrayAdaper = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, commandLogs_info)
         listView.adapter = arrayAdaper
-
-        listView.setOnItemClickListener { parent, view, position, id ->
-            val element = parent.getItemAtPosition(position)
-            intent = Intent(this, DeviceActivity::class.java)
-            intent.putExtra("Device Id", (element as Device).id)
-            startActivity(intent)
-        }
 
     }
 }

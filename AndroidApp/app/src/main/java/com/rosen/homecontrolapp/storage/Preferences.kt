@@ -2,21 +2,23 @@ package com.rosen.homecontrolapp.storage
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.rosen.homecontrolapp.constant.commandLogs
 import com.rosen.homecontrolapp.constant.Constant
 import com.rosen.homecontrolapp.constant.devices
+import com.rosen.homecontrolapp.model.CommandLog
 import com.rosen.homecontrolapp.model.Device
 import com.rosen.homecontrolapp.model.Storage
-import java.sql.Array
 
 class Preferences(ctx: Context) {
 
     val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx)
 
     private fun getSharedPreferencesValue(storage: Storage): String {
-        //val (key, default) = storage
         val value = preferences.getString(storage.key, storage.default)!!
         return if (value.isBlank()) storage.default else value
     }
@@ -40,6 +42,12 @@ class Preferences(ctx: Context) {
         else return Gson().fromJson<ArrayList<Device>>(getSharedPreferencesValue(Constant.DEVICE_STORAGE), object : TypeToken<ArrayList<Device>>() {}.type)
     }
 
+    fun getLogs(): ArrayList<CommandLog>{
+        if( Gson().fromJson<ArrayList<CommandLog>>(getSharedPreferencesValue(Constant.COMMANDS_LOG_STORAGE), object : TypeToken<ArrayList<CommandLog>>() {}.type) == null)  return ArrayList<CommandLog>()
+        else return Gson().fromJson<ArrayList<CommandLog>>(getSharedPreferencesValue(Constant.COMMANDS_LOG_STORAGE), object : TypeToken<ArrayList<CommandLog>>() {}.type)
+    }
+
+
     fun saveDevice(device: Device?)
     {
         devices = getDevices()
@@ -59,9 +67,22 @@ class Preferences(ctx: Context) {
         saveDevices()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun addLog(log: CommandLog){
+        commandLogs = getLogs()
+        commandLogs.add(log)
+        saveLogs()
+    }
+
     fun saveDevices(){
         val jsonString = Gson().toJson(devices)
         changeSharedPreferencesValue("devices", jsonString)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun saveLogs(){
+        val jsonString = Gson().toJson(commandLogs)
+        changeSharedPreferencesValue("command_logs", jsonString)
     }
 
     fun generateDeviceId() : Int

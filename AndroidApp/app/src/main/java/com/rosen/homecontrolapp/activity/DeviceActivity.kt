@@ -2,6 +2,7 @@ package com.rosen.homecontrolapp.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -10,10 +11,12 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.rosen.homecontrolapp.R
 import com.rosen.homecontrolapp.constant.devices
 import com.rosen.homecontrolapp.storage.Preferences
 import com.rosen.homecontrolapp.constant.espConnector
+import com.rosen.homecontrolapp.model.CommandLog
 import com.rosen.homecontrolapp.model.Device
 import com.rosen.homecontrolapp.model.DeviceMode
 import com.rosen.homecontrolapp.service.EspConnector
@@ -26,6 +29,7 @@ class DeviceActivity : AppCompatActivity() {
 
 
     @SuppressLint("SetTextI18n")
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         val preferences = Preferences(this)
         deviceId = intent.getIntExtra("Device Id", 0)
@@ -55,12 +59,10 @@ class DeviceActivity : AppCompatActivity() {
             DeviceMode.ACCESS_POINT -> {
                 espConnector.changeUrl("http://${preferences.getIpAddressAp()}")
                 modeTextView.setText("Access Point")
-                println("url = http://${preferences.getIpAddressAp()}")
             }
             DeviceMode.STATION -> {
                 espConnector.changeUrl("http://${preferences.getIpAddressSta()}")
                 modeTextView.setText("Station")
-                println("url = http://${preferences.getIpAddressSta()}")
             }
         }
 
@@ -70,6 +72,7 @@ class DeviceActivity : AppCompatActivity() {
             device!!.relayOn = true
             relayStatusTextView.setText("ON")
             preferences.saveDevice(device)
+            preferences.addLog(CommandLog(deviceName = device!!.name, command = "Relay ON"))
         }
 
         btnOFF.setOnClickListener {
@@ -77,6 +80,7 @@ class DeviceActivity : AppCompatActivity() {
             device!!.relayOn = false
             relayStatusTextView.setText("OFF")
             preferences.saveDevice(device)
+            preferences.addLog(CommandLog(deviceName = device!!.name, command = "Relay OFF"))
         }
         btnAP.setOnClickListener {
             espConnector.sendSwitchRequest("ap")
@@ -84,7 +88,7 @@ class DeviceActivity : AppCompatActivity() {
             device!!.mode = DeviceMode.ACCESS_POINT
             preferences.saveDevice(device)
             modeTextView.setText("Access Point")
-            println("url = http://${preferences.getIpAddressAp()}")
+            preferences.addLog(CommandLog(deviceName = device!!.name, command = "Mode to AP"))
 
         }
         btnSTA.setOnClickListener {
@@ -93,7 +97,7 @@ class DeviceActivity : AppCompatActivity() {
             device!!.mode = DeviceMode.STATION
             preferences.saveDevice(device)
             modeTextView.setText("Station")
-            println("url = http://${preferences.getIpAddressAp()}")
+            preferences.addLog(CommandLog(deviceName = device!!.name, command = "Mode to STA"))
         }
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -105,7 +109,6 @@ class DeviceActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
             when (item.itemId) {
                 R.id.action_configuration -> {
-                    Toast.makeText(this, "CLICKED", Toast.LENGTH_SHORT ).show()
                     val intent = Intent(this, ConfigurationActivity::class.java)
                     intent.putExtra("Device Id", deviceId)
                     startActivity(intent)
