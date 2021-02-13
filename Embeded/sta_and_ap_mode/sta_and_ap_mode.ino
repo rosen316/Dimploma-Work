@@ -3,13 +3,12 @@
 #include <ESP8266WebServer.h>
 
 // WiFi Definitions
-String ssid_sta = "jivko";
-String password_sta = "jivkottt";
+String ssid_sta = "";
+String password_sta = "";
 String ssid_ap = "Esp8266AP";
 String password_ap = "Esp8266AP";
-String value = "";
 
-uint8_t Relay_Pin = 2;
+uint8_t Relay_Pin = 0;
 
 IPAddress ip(192, 168, 4, 1);
 IPAddress gateway(192, 168, 4, 1);
