@@ -1,5 +1,8 @@
 package com.rosen.homecontrolapp.activity
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -9,6 +12,7 @@ import android.view.MenuItem
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rosen.homecontrolapp.R
 import com.rosen.homecontrolapp.constant.devices
@@ -17,8 +21,13 @@ import com.rosen.homecontrolapp.storage.Preferences
 
 class MainActivity : AppCompatActivity() {
 
-     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val mChannel = NotificationChannel("1", "channel1", NotificationManager.IMPORTANCE_DEFAULT)
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(mChannel)
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar((findViewById(R.id.toolbar_logs)))
@@ -47,6 +56,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+//    override fun onResume() {
+//        super.onResume()
+//        print("TESTTTTTTTTT")
+//    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.toolbar_main_menu, menu)

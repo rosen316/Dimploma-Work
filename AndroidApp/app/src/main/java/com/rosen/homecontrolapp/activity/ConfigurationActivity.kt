@@ -26,7 +26,6 @@ class ConfigurationActivity : AppCompatActivity(), SharedPreferences.OnSharedPre
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cofiguration)
-        //setSupportActionBar(findViewById(R.id.toolbar_configuration))
 
         if (supportActionBar != null) {
             with(supportActionBar!!) {

@@ -1,12 +1,23 @@
 package com.rosen.homecontrolapp.activity
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.NotificationManager.IMPORTANCE_DEFAULT
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.DialogFragment
 import androidx.preference.Preference
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -18,6 +29,7 @@ import com.rosen.homecontrolapp.storage.Preferences
 class AddDeviceDialog: DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         val prefs = Preferences(this.context as Context)
         devices = prefs.getDevices()
 
@@ -50,7 +62,23 @@ class AddDeviceDialog: DialogFragment() {
                     ap_password = ApPassword.text.toString(),
                     ap_ip = ApIp.text.toString()))
             prefs.saveDevices()
+
+            val intent = Intent(this.context, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            val pendingIntent: PendingIntent = PendingIntent.getActivity(this.context, 0, intent, 0)
+
+            val builder = NotificationCompat.Builder(this.context as Context, "1")
+                    .setContentTitle("New Device Created Successfully")
+                    .setContentText("${deviceName.text.toString()} ready for usage!")
+                    .setSmallIcon((R.drawable.ic_launcher_foreground))
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+
+            NotificationManagerCompat.from(this.context as Context).notify(1, builder.build())
+
             dismiss()
+
         }
 
         return rootView

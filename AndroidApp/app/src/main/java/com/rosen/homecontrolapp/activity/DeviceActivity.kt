@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -27,9 +28,8 @@ class DeviceActivity : AppCompatActivity() {
     var device: Device? = null
     var deviceId: Int = 0
 
-
-    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         val preferences = Preferences(this)
         deviceId = intent.getIntExtra("Device Id", 0)
@@ -43,16 +43,17 @@ class DeviceActivity : AppCompatActivity() {
         val relayStatusTextView = findViewById<TextView>(R.id.statusVariable)
         val modeTextView = findViewById<TextView>(R.id.modeVariable)
 
-        val btnON = findViewById<Button>(R.id.buttonOn)
-        val btnOFF = findViewById<Button>(R.id.buttonOff)
+        val relaySwitch = findViewById<Switch>(R.id.relay_switch)
         val btnAP = findViewById<Button>(R.id.buttonSwitchAp)
         val btnSTA = findViewById<Button>(R.id.buttonSwitchSta)
 
         espConnector = EspConnector(this@DeviceActivity)
 
         when(device!!.relayOn){
-            true -> relayStatusTextView.setText("ON")
+            true -> { relayStatusTextView.setText("ON")
+                      relaySwitch.isChecked = true }
             false -> relayStatusTextView.setText("OFF")
+
         }
 
         when(device!!.mode){
@@ -66,22 +67,23 @@ class DeviceActivity : AppCompatActivity() {
             }
         }
 
-
-        btnON.setOnClickListener {
-            espConnector.sendLedRequest(state = "on")
-            device!!.relayOn = true
-            relayStatusTextView.setText("ON")
-            preferences.saveDevice(device)
-            preferences.addLog(CommandLog(deviceName = device!!.name, command = "Relay ON"))
+        relaySwitch.setOnCheckedChangeListener{_, isChecked ->
+            if(isChecked) {
+                espConnector.sendLedRequest(state = "on")
+                device!!.relayOn = true
+                relayStatusTextView.setText("ON")
+                preferences.saveDevice(device)
+                preferences.addLog(CommandLog(deviceName = device!!.name, command = "Relay ON"))
+            }
+            else {
+                device!!.relayOn = false
+                relayStatusTextView.setText("OFF")
+                preferences.saveDevice(device)
+                preferences.addLog(CommandLog(deviceName = device!!.name, command = "Relay OFF"))
+            }
         }
 
-        btnOFF.setOnClickListener {
-            espConnector.sendLedRequest(state = "off")
-            device!!.relayOn = false
-            relayStatusTextView.setText("OFF")
-            preferences.saveDevice(device)
-            preferences.addLog(CommandLog(deviceName = device!!.name, command = "Relay OFF"))
-        }
+
         btnAP.setOnClickListener {
             espConnector.sendSwitchRequest("ap")
             espConnector.changeUrl("http://${preferences.getIpAddressAp()}")

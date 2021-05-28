@@ -18,14 +18,14 @@
     <ListView
         android:id="@+id/device_list"
         android:layout_width="wrap_content"
-        android:layout_height="607dp"
+        android:layout_height="568dp"
         tools:layout_editor_absoluteX="79dp"
         tools:layout_editor_absoluteY="232dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addDeviceButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="58dp"
+        android:layout_height="56dp"
         android:clickable="true"
         app:srcCompat="@drawable/ic_add" />
 
