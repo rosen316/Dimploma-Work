@@ -3,6 +3,7 @@
     <string name= "relay_status">Relay Status</string>
     <string name= "device_mode">Mode</string>
     <string name="sta">STA</string>
+    <string name="delete">DELETE</string>
     <string name="ap">AP</string>
     <string name="off">OFF</string>
     <string name="on">ON</string>

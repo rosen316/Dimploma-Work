@@ -11,5 +11,7 @@
     <color name= "grey">#606060</color>
     <color name= "lime">#66ff00</color>
     <color name= "off_red">#ff0000</color>
+    <color name= "delete_red">#d11a2a</color>
+
 
 </resources>

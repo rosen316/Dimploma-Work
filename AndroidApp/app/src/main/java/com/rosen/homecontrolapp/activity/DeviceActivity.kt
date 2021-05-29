@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -29,9 +30,10 @@ class DeviceActivity : AppCompatActivity() {
     var deviceId: Int = 0
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         val preferences = Preferences(this)
+        devices = preferences.getDevices()
         deviceId = intent.getIntExtra("Device Id", 0)
         device = devices.find { it.id.equals(deviceId) }
         Preferences(this).loadDevice(device as Device)
@@ -46,6 +48,7 @@ class DeviceActivity : AppCompatActivity() {
         val relaySwitch = findViewById<Switch>(R.id.relay_switch)
         val btnAP = findViewById<Button>(R.id.buttonSwitchAp)
         val btnSTA = findViewById<Button>(R.id.buttonSwitchSta)
+        val btnDelete = findViewById<Button>(R.id.buttonDelete)
 
         espConnector = EspConnector(this@DeviceActivity)
 
@@ -100,6 +103,17 @@ class DeviceActivity : AppCompatActivity() {
             preferences.saveDevice(device)
             modeTextView.setText("Station")
             preferences.addLog(CommandLog(deviceName = device!!.name, command = "Mode to STA"))
+        }
+
+        btnDelete.setOnClickListener{
+            devices.remove(device)
+            preferences.saveDevices()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

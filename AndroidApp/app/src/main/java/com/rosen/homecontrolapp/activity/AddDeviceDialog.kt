@@ -76,7 +76,6 @@ class AddDeviceDialog: DialogFragment() {
                     .setAutoCancel(true)
 
             NotificationManagerCompat.from(this.context as Context).notify(1, builder.build())
-
             dismiss()
 
         }

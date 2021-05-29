@@ -56,10 +56,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        print("TESTTTTTTTTT")
-//    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.toolbar_main_menu, menu)
