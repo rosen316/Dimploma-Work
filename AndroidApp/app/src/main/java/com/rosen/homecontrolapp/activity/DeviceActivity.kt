@@ -18,16 +18,20 @@ import com.rosen.homecontrolapp.R
 import com.rosen.homecontrolapp.constant.devices
 import com.rosen.homecontrolapp.storage.Preferences
 import com.rosen.homecontrolapp.constant.espConnector
+import com.rosen.homecontrolapp.dialog.AddDeviceDialog
+import com.rosen.homecontrolapp.dialog.DeleteDeviceDialog
 import com.rosen.homecontrolapp.model.CommandLog
 import com.rosen.homecontrolapp.model.Device
 import com.rosen.homecontrolapp.model.DeviceMode
 import com.rosen.homecontrolapp.service.EspConnector
 
 
-class DeviceActivity : AppCompatActivity() {
+class DeviceActivity : AppCompatActivity(), DeleteDeviceDialog.OnDeviceDeletedListener {
+
 
     var device: Device? = null
     var deviceId: Int = 0
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n", "UseSwitchCompatOrMaterialCode")
@@ -106,6 +110,13 @@ class DeviceActivity : AppCompatActivity() {
         }
 
         btnDelete.setOnClickListener{
+            DeleteDeviceDialog().show(supportFragmentManager, "DeleteDeviceDialog")
+        }
+    }
+
+    override fun deviceDeleted(yes: Boolean) {
+        val preferences = Preferences(this)
+        if(yes){
             devices.remove(device)
             preferences.saveDevices()
             val intent = Intent(this, MainActivity::class.java)
@@ -116,6 +127,7 @@ class DeviceActivity : AppCompatActivity() {
             finish()
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.toolbar_device_menu, menu)

@@ -22,7 +22,7 @@ class ConfigurationActivity : AppCompatActivity(), SharedPreferences.OnSharedPre
     override fun onCreate(savedInstanceState: Bundle?) {
 
         deviceId = intent.getIntExtra("Device Id", 1)
-        device = devices!!.find { it.id.equals(deviceId) }!!
+        device = devices.find { it.id.equals(deviceId) }!!
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cofiguration)
@@ -46,11 +46,11 @@ class ConfigurationActivity : AppCompatActivity(), SharedPreferences.OnSharedPre
                 .registerOnSharedPreferenceChangeListener(this)
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        PreferenceManager.getDefaultSharedPreferences(this)
-//                .registerOnSharedPreferenceChangeListener(this)
-//    }
+    override fun onResume() {
+        super.onResume()
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this)
+    }
 
     override fun onPause() {
         super.onPause()

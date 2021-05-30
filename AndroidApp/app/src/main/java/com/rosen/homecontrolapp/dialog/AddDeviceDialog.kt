@@ -1,13 +1,8 @@
-package com.rosen.homecontrolapp.activity
+package com.rosen.homecontrolapp.dialog
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.NotificationManager.IMPORTANCE_DEFAULT
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,17 +11,30 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.DialogFragment
-import androidx.preference.Preference
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rosen.homecontrolapp.R
+import com.rosen.homecontrolapp.activity.MainActivity
 import com.rosen.homecontrolapp.constant.devices
 import com.rosen.homecontrolapp.model.Device
 import com.rosen.homecontrolapp.storage.Preferences
+import java.lang.ClassCastException
 
 class AddDeviceDialog: DialogFragment() {
+
+    interface OnDeviceAddedListener{
+        fun deviceAdded(yes: Boolean)
+    }
+
+    lateinit var deviceAddedListener: OnDeviceAddedListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            deviceAddedListener = context as OnDeviceAddedListener
+        }catch(e: ClassCastException){
+            e.printStackTrace()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -76,6 +84,8 @@ class AddDeviceDialog: DialogFragment() {
                     .setAutoCancel(true)
 
             NotificationManagerCompat.from(this.context as Context).notify(1, builder.build())
+
+            deviceAddedListener.deviceAdded(true)
             dismiss()
 
         }
