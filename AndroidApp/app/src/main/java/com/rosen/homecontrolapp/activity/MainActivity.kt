@@ -34,18 +34,19 @@ class MainActivity : AppCompatActivity(), AddDeviceDialog.OnDeviceAddedListener 
         }
 
         val prefs = Preferences(this)
+        devices = prefs.getDevices()
 
         val listView =  findViewById<ListView>(R.id.device_list)
-//        var deviceNames = prefs.getDevices().map {it.name}
-//        arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, deviceNames)
-        arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prefs.getDevices().map {it.name})
+        var deviceNames = devices.map {it.name}
+        arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, deviceNames)
+        //arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prefs.getDevices().map {it.name})
         listView.adapter = arrayAdapter
 
         listView.setOnItemClickListener{parent, view, position, id ->
             val deviceName = parent.getItemAtPosition(position)
             val device = devices.find { it.name.equals(deviceName)}
             intent = Intent(this, DeviceActivity::class.java)
-            intent.putExtra("Device Id", (device as Device).id)
+            intent.putExtra("Device Id", device!!.id)
             startActivity(intent)
         }
 
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity(), AddDeviceDialog.OnDeviceAddedListener 
     }
 
     override fun deviceAdded(yes: Boolean) {
-        arrayAdapter.notifyDataSetChanged()
+        //arrayAdapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

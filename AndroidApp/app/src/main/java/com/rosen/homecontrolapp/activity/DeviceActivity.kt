@@ -40,7 +40,7 @@ class DeviceActivity : AppCompatActivity(), DeleteDeviceDialog.OnDeviceDeletedLi
         devices = preferences.getDevices()
         deviceId = intent.getIntExtra("Device Id", 0)
         device = devices.find { it.id.equals(deviceId) }
-        Preferences(this).loadDevice(device as Device)
+        Preferences(this).loadDevice(device!! as Device)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
