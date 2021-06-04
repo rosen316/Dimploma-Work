@@ -8,8 +8,8 @@
 
     <Button
         android:id="@+id/buttonDelete"
-        android:layout_width="128dp"
-        android:layout_height="43dp"
+        android:layout_width="109dp"
+        android:layout_height="38dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="@color/delete_red"
         android:text="@string/delete"
@@ -17,10 +17,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSwitchSta"
-        app:layout_constraintVertical_bias="0.931" />
+        app:layout_constraintVertical_bias="0.882" />
 
     <Button
         android:id="@+id/buttonSwitchSta"
@@ -54,52 +53,58 @@
 
     <TextView
         android:id="@+id/modeVariable"
-        android:layout_width="178dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_width="209dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginRight="148dp"
+        android:layout_marginBottom="96dp"
         android:textColor="#000000"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/relay_switch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusVariable" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/modeTextView"
+        app:layout_constraintTop_toBottomOf="@+id/statusVariable"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/modeTextView"
-        android:layout_width="177dp"
-        android:layout_height="wrap_content"
+        android:layout_width="93dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
         android:text="@string/device_mode"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/modeVariable"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/relay_switch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusVariable"
-        app:layout_constraintVertical_bias="0.428"
-        tools:text="Mode" />
+        app:layout_constraintTop_toBottomOf="@+id/relayStatusTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/statusVariable"
-        android:layout_width="176dp"
-        android:layout_height="wrap_content"
+        android:layout_width="99dp"
+        android:layout_height="42dp"
         android:layout_marginTop="4dp"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relayStatusTextView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/relayStatusTextView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_device" />
 
     <TextView
         android:id="@+id/relayStatusTextView"
-        android:layout_width="176dp"
-        android:layout_height="wrap_content"
+        android:layout_width="182dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="4dp"
         android:text="@string/relay_status"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_device"
-        tools:text="Relay Status" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_device" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_device"
@@ -112,15 +117,14 @@
         android:id="@+id/relay_switch"
         android:layout_width="105dp"
         android:layout_height="47dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="228dp"
         android:scaleX="1.4"
         android:scaleY="1.4"
         android:text="Relay"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modeVariable" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_device" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,6 @@ class CommandLog(val deviceName: String, val command: String) {
     var timestamp: String = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).format(LocalDateTime.now())
     
     fun get_info(): String{
-        return "$deviceName          $command          $timestamp"
+        return "$deviceName     $command     $timestamp"
     }
 }

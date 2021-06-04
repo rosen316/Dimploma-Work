@@ -80,10 +80,10 @@ class ConfigurationActivity : AppCompatActivity(), SharedPreferences.OnSharedPre
                 espConnector.sendConfigChangeRequest(passwordAp = sharedPreferences.getString(key, Constant.AP_WIFI_PASSWORD_STORAGE.default))
                 device!!.ap_password = sharedPreferences.getString(key, Constant.AP_WIFI_PASSWORD_STORAGE.default)!!
             }
-            "ap_port" -> {
-                espConnector.sendConfigChangeRequest(portAp = sharedPreferences.getString(key, Constant.AP_PORT_STORAGE.default))
-                device!!.ap_port = sharedPreferences.getString(key, Constant.AP_PORT_STORAGE.default)!!
-            }
+//            "ap_port" -> {
+//                espConnector.sendConfigChangeRequest(portAp = sharedPreferences.getString(key, Constant.AP_PORT_STORAGE.default))
+//                device!!.ap_port = sharedPreferences.getString(key, Constant.AP_PORT_STORAGE.default)!!
+//            }
             "ap_ip_address" -> { //DOESNT SENT REQUEST CURRENTLY!!!!
                 //espConnector.sendConfigChangeRequest(ipAdressIp = sharedPreferences.getString(key, Constant.AP_SSID_STORAGE.default))
                 device!!.ap_ip = sharedPreferences.getString(key, Constant.STA_IP_ADDRESS_STORAGE.default)!!
@@ -97,10 +97,10 @@ class ConfigurationActivity : AppCompatActivity(), SharedPreferences.OnSharedPre
                 espConnector.sendConfigChangeRequest(passwordSta = sharedPreferences.getString(key, Constant.STA_WIFI_PASSWORD_STORAGE.default))
                 device!!.sta_password = sharedPreferences.getString(key, Constant.STA_WIFI_PASSWORD_STORAGE.default)!!
             }
-            "sta_port" -> {
-                espConnector.sendConfigChangeRequest(portSta = sharedPreferences.getString(key, Constant.STA_PORT_STORAGE.default))
-                device!!.sta_port = sharedPreferences.getString(key, Constant.STA_WIFI_PASSWORD_STORAGE.default)!!
-            }
+//            "sta_port" -> {
+//                espConnector.sendConfigChangeRequest(portSta = sharedPreferences.getString(key, Constant.STA_PORT_STORAGE.default))
+//                device!!.sta_port = sharedPreferences.getString(key, Constant.STA_WIFI_PASSWORD_STORAGE.default)!!
+//            }
             else -> return
         }
         prefs.saveDevice(device)

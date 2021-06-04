@@ -19,24 +19,17 @@
             android:key="sta_wifi_password"
             android:title="Password" />
 
-        <EditTextPreference
-            android:dialogMessage="Set port for STA mode"
-            android:dialogTitle="Port"
-            android:inputType="text"
-            android:key="sta_port"
-            android:title="Port" />
+<!--        <EditTextPreference-->
+<!--            android:dialogMessage="Set port for STA mode"-->
+<!--            android:dialogTitle="Port"-->
+<!--            android:inputType="text"-->
+<!--            android:key="sta_port"-->
+<!--            android:title="Port" />-->
 
     </PreferenceCategory>
 
     <PreferenceCategory
         android:title="Access Point Mode">
-
-        <EditTextPreference
-            android:dialogMessage="Set IP Address for AP mode"
-            android:dialogTitle="IP Address"
-            android:inputType="text"
-            android:key="ap_ip_address"
-            android:title="IP Address" />
 
         <EditTextPreference
             android:dialogMessage="Set SSID for AP mode"
@@ -53,11 +46,18 @@
             android:title="Password" />
 
         <EditTextPreference
-            android:dialogMessage="Set port for AP mode"
-            android:dialogTitle="Port"
+            android:dialogMessage="Set IP Address for AP mode"
+            android:dialogTitle="IP Address"
             android:inputType="text"
-            android:key="ap_port"
-            android:title="Port" />
+            android:key="ap_ip_address"
+            android:title="IP Address" />
+
+<!--        <EditTextPreference-->
+<!--            android:dialogMessage="Set port for AP mode"-->
+<!--            android:dialogTitle="Port"-->
+<!--            android:inputType="text"-->
+<!--            android:key="ap_port"-->
+<!--            android:title="Port" />-->
     </PreferenceCategory>
 
 </PreferenceScreen>

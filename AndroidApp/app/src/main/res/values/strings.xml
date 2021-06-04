@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Home Control App</string>
-    <string name= "relay_status">Relay Status</string>
-    <string name= "device_mode">Mode</string>
+    <string name= "relay_status">Relay Status:</string>
+    <string name= "device_mode">Mode:</string>
     <string name="sta">STA</string>
     <string name="delete">DELETE</string>
     <string name="ap">AP</string>
