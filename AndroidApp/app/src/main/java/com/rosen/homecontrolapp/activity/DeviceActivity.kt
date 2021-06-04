@@ -83,6 +83,7 @@ class DeviceActivity : AppCompatActivity(), DeleteDeviceDialog.OnDeviceDeletedLi
                 preferences.addLog(CommandLog(deviceName = device!!.name, command = "Relay ON"))
             }
             else {
+                espConnector.sendLedRequest(state = "off")
                 device!!.relayOn = false
                 relayStatusTextView.setText("OFF")
                 preferences.saveDevice(device)
