@@ -89,14 +89,14 @@ void ConfigSwitch()
    {
        password_ap = "";
    }
-//     if(server.arg("ip_address_ap") != "")
-//   {
-//      ip = ip(192, 168, 4, 1)server.arg("ip_address_ap");
-//      const String str = server.arg("ip_address_ap");
-//      uint8_t new_ip[4];
-//      sscanf(str, "%u.%u.%u.%u", &ip[0], &ip[1], &ip[2], &ip[3]);
-//      ip = new_ip;
-//   }
+     if(server.arg("ip_address_ap") != "")
+   {
+      ip = ip(192, 168, 4, 1)server.arg("ip_address_ap");
+      const String str = server.arg("ip_address_ap");
+      uint8_t new_ip[4];
+      sscanf(str, "%u.%u.%u.%u", &ip[0], &ip[1], &ip[2], &ip[3]);
+      ip = new_ip;
+   }
       if(server.arg("ssid_sta") != "")
    {
        ssid_sta = server.arg("ssid_sta");
